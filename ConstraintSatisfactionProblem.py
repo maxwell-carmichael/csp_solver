@@ -33,7 +33,7 @@ class ConstraintSatisfactionProblem:
 
         if assignment == None:
             self.nodes_visited = 1
-            unassigned_vars = list(self.neighbors.keys()) # why is a list so much faster???
+            unassigned_vars = list(self.neighbors.keys()) 
             assignment = [None] * len(self.neighbors)
 
         if self.PRINT_FLAG:
@@ -51,8 +51,6 @@ class ConstraintSatisfactionProblem:
                 return assignment
             return None
 
-        # save current domain to reset forward checking/inference
-        # domain_save = copy.deepcopy(self.domain)
         domain_save = self.domain
         # next variable to assign
         variable = self.get_variable(unassigned_vars)
@@ -343,14 +341,6 @@ def test2():
     domain = { 0 : colors.copy(), 1 : colors.copy(), 2: colors.copy(), 3: colors.copy(), 4: colors.copy(), 5: colors.copy(), 6: colors.copy() }
     colorsneq = { (0,1), (0,2), (1,0), (1,2), (2,0), (2,1) }
     constraints = { (0,1) : set(colorsneq), (0,2) : set(colorsneq), (1,2) : set(colorsneq), (1,3) : set(colorsneq), (2,3) : set(colorsneq), (2,4) : set(colorsneq), (2,5) : set(colorsneq), (3,4) : set(colorsneq), (4,5) : set(colorsneq) }
-    # the following avoids redundancies:
-    # 0 WA -> NT, SA
-    # 1 NT -> Q, SA
-    # 2 SA -> Q, NSW, Victoria
-    # 3 Q -> NSW
-    # 4 NSW -> Victoria
-    # 5 Victoria ->
-    # 6 Tasmania ->
 
     problem2 = ConstraintSatisfactionProblem(neighbors, domain, constraints, MRV = True, LCV = True, AC3 = True)
     assignment = problem2.get_assignment()
