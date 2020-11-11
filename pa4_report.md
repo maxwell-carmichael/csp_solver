@@ -1,10 +1,7 @@
 Maxwell Carmichael
 
-Professor Alberto Quattrini Li
-###### CS76 - PA4: Constraint Satisfaction
-
 ### Introduction
-In this programming assignment, I created a general-purpose constraint satisfaction problem solver as well as three specific constraint satisfaction problems: Map coloring, circuit board, and sudoku.
+In this project, I created a general-purpose constraint satisfaction problem solver as well as three specific constraint satisfaction problems: Map coloring, circuit board, and sudoku.
 
 ### General-Purpose CSP
 I began this assignment by creating a ConstraintSatisfactionProblem class, which, given a graph of integer variables, domains, and constraints, could return a list of values, with indices being the variables. The bulk of the backtracking algorithm is in backtrack_recursion, which assigns a value to an unassigned variable with each level of recursion. It chooses the variable to assign by calling get_variable, and determines the order of values to assign by calling get_values. I decided that my algorithm would always forward check, so that any value chosen from any domain would always be consistent. The other option would be to check if a value is consistent as it's chosen, but this yields the same result as - and in much slower time than - forward checking. The forward_check method does this by returning a new domain - I save the old domain in a variable "domain_save" so that any modifications to the domain (in either forward_check or AC3) can be quickly undoed. Another implementation decision I made was that my constraint map, which maps tuples of variables in the form (i,j) to a set of allowed value-pairs, would always have i<j. This saves space in the constraint map.
@@ -133,3 +130,7 @@ The first thing to note is the apparent ineffectiveness of the degree heuristic.
 AC3 alone is shown to be incredibly effective, reducing the number of nodes visited (recursion calls) from 149491 to 20. LCV alone does not reduce runtime as well as AC3, but it has a much lower ratio of runtime to recursion calls. MRV alone has more recursion calls than AC3 alone but is about three times faster.
 
 Interestingly, AC3 significantly improves runtime when combined with other heuristics, but only to a certain point. In the cases where we combine MRV with DH and/or LCV, AC3 actually about doubles the runtime (but still has a runtime under 80ms nonetheless). This is probably an indicator that the heuristics do a lot of work on their own (besides DH), and that combining them all is actually rather unnecessary and can take computational power. I seem to get the best results when using MRV in combination with LCV and/or DH, with no AC-3. But of course it is important to remember that these observations are very problem dependent, and the important part is that the heuristics significantly improved upon the 80 second runtime.
+
+Project for CS76 - Artificial Intelligence
+Professor Alberto Quattrini Li
+PA4: Constraint Satisfaction
