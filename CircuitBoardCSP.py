@@ -1,3 +1,5 @@
+# Maxwell Carmichael, 10/11/2020
+
 from ConstraintSatisfactionProblem import ConstraintSatisfactionProblem
 
 class CircuitBoardCSP:
@@ -90,8 +92,6 @@ class CircuitBoardCSP:
         heighti = self.piecemap[self.charmap[vari]][1]
         lengthj = self.piecemap[self.charmap[varj]][0]
         heightj = self.piecemap[self.charmap[varj]][1]
-
-        # DEFINITELY MORE EFFICIENT WAY TO IMPLEMENT THIS!!!s
 
         # loop over the domain of vari and domain of varj and if they do not
         # overlap, add them to possible combos
